@@ -1,0 +1,23 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "montserrat",
+        "createdAt": "2026-11-27T11:08:19.287Z",
+        "reason": "Montserrat is MK Elegance's brand body font (mkelegancestudio.ca); user asked to use MK Elegance typography"
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "site/*.html"
+        ],
+        "createdAt": "2026-11-27T11:08:26.160Z",
+        "reason": "MK Elegance brand ivory #F8F4EE from mkelegancestudio.ca; user asked to use MK Elegance colours"
+      }
+    ]
+  }
+}

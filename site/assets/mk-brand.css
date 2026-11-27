@@ -125,3 +125,8 @@ h1, h2, h3, h4, h5, h6, .h0, .h1, .h2, .h3, .h4, .h5 {
   .dt-desktop-menu.dt-nav > li.top-level-link > a,
   .dt-desktop-menu.dt-nav > li.top-level-link > details > summary { font-size: 12px; letter-spacing: .06em; }
 }
+
+/* Hover contrast: Morgana's .link:hover used the accent gold (2.9:1 on ivory) -> AA-safe gold;
+   the header Book Now hover kept the theme's espresso text on dark gold (3.2:1) -> ivory text */
+.link:hover, .customer a:hover { color: var(--mk-gold-text); }
+.mk-book.button:hover, .mk-book.button:focus-visible { color: var(--mk-ivory) !important; }
