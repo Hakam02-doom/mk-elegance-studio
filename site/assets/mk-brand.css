@@ -1,0 +1,127 @@
+/* MK Elegance Studio brand layer on top of the Morgana theme.
+   Palette + type from mkelegancestudio.ca */
+:root {
+  --mk-ink: #0E0B09;
+  --mk-espresso: #2B1E14;
+  --mk-brown: #4A3728;
+  --mk-muted: #7C6A5E;
+  --mk-gold: #B08A52;
+  --mk-gold-lt: #CFA96D;
+  --mk-gold-text: #8A6830;
+  --mk-gold-pale: #EAD9BE;
+  --mk-ivory: #F8F4EE;
+  --mk-parchment: #EEE7DA;
+}
+
+body { color: var(--mk-ink); }
+
+/* Cormorant has a smaller x-height than Marcellus: nudge headings so line lengths match the original */
+h1, h2, h3, h4, h5, h6, .h0, .h1, .h2, .h3, .h4, .h5 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+/* Script accent font (was Mr De Haviland) -> MK gold italic */
+[style*="--font-additional-family"], .additional-font, .sub-heading.additional {
+  font-style: italic;
+  color: var(--mk-gold);
+}
+
+::selection { background: var(--mk-gold-pale); color: var(--mk-ink); }
+
+/* "Someone purchased X minutes ago" pop-up shows invented activity: kept in markup, hidden */
+.customer-purchased, #shopify-section-suggested-products { display: none !important; }
+
+/* Morgana's demo YouTube video has no MK equivalent: hide the play button */
+.video-icon-button { display: none !important; }
+
+/* ---------- Fixes to issues inherited from the Morgana theme ---------- */
+
+/* 1. Contrast: Morgana puts white text on its accent colour (3.2:1 on MK gold).
+      Solid accent buttons use MK's darker gold-text tone so ivory text passes WCAG AA. */
+.button--secondary,
+.color-background-3 .button:not(.button--tertiary),
+.button.button--secondary:not(:hover) {
+  background-color: var(--mk-gold-text) !important;
+  border-color: var(--mk-gold-text) !important;
+  color: var(--mk-ivory) !important;
+}
+.button--secondary:hover { background-color: var(--mk-espresso) !important; border-color: var(--mk-espresso) !important; }
+
+/* Gold used as small text on ivory (accordion titles, eyebrow labels) -> AA-safe gold */
+.accordion__title, .product__accordion .accordion__title { color: var(--mk-gold-text); }
+
+/* 2. Pure black (#000) everywhere read harsh against ivory/gold: text now uses MK espresso via
+      --color-base-text; a few hard-coded blacks in the theme are mapped here. */
+.price, .price-item, .card__heading a, .footer, .header__menu-item { color: rgb(var(--color-base-text)); }
+
+/* 3. Long copy was squeezed into wide single lines; give paragraphs a readable measure */
+.rte p, .description, .banner__text, .slideshow__text .rte, .image-with-text__text {
+  max-width: 62ch;
+  line-height: 1.75;
+}
+.text-center .rte p, .text-center .description, .center .description { margin-left: auto; margin-right: auto; }
+
+/* 4. Cormorant reads lighter than Marcellus at small sizes: keep small headings legible */
+.card__heading, .article-card__title, .accordion__title { font-weight: 600; }
+
+/* 5. Logo: Morgana's header was sized for a wide, short wordmark; the MK monogram is taller */
+.header__heading-logo { height: 56px !important; width: auto !important; max-width: none; }
+@media (max-width: 989px) { .header__heading-logo { height: 44px !important; } }
+
+/* 6. Offer marquee: copy kept to Morgana's original length so it stays on one line */
+
+/* 7. Right-aligned card text read awkwardly (and collided with the back-to-top button on phones) */
+@media (max-width: 749px) {
+  .card__information, .card-information, .card__content { text-align: center !important; justify-content: center; }
+  .card-information .price, .card__content .price { justify-content: center; }
+}
+
+/* ---------- Studio website components (replace the store's cart/variant UI) ---------- */
+.header__icons { display: flex; align-items: center; gap: 1.2rem; }
+.mk-book.button { min-height: 4rem; min-width: 0; padding: 0 2.2rem; font-size: 1.2rem; letter-spacing: .18em; text-transform: uppercase;
+  background: var(--mk-espresso); color: var(--mk-ivory); white-space: nowrap; }
+.mk-book.button:hover { background: var(--mk-gold-text); }
+@media (max-width: 749px) { .mk-book.button { min-height: 3.4rem; padding: 0 1.2rem; font-size: 1rem; letter-spacing: .12em; } }
+
+.mk-service-book { margin: 1.6rem 0 2.4rem; }
+.mk-rating { display: inline-block; color: var(--mk-gold-text); text-decoration: none; font-size: 1.4rem; margin-bottom: 1.6rem; letter-spacing: .1em; }
+.mk-rating span { color: rgb(var(--color-base-text)); letter-spacing: 0; margin-left: .6rem; }
+.mk-facts { display: grid; gap: 0; margin: 0 0 2.4rem; border-top: 1px solid rgba(176,138,82,.3); }
+.mk-facts > div { display: grid; grid-template-columns: 12rem 1fr; gap: 1.6rem; padding: 1.2rem 0; border-bottom: 1px solid rgba(176,138,82,.3); }
+.mk-facts dt { font-size: 1.1rem; letter-spacing: .18em; text-transform: uppercase; color: var(--mk-gold-text); font-weight: 600; }
+.mk-facts dd { margin: 0; font-size: 1.5rem; }
+.mk-service-ctas { display: flex; flex-wrap: wrap; gap: 1.2rem; }
+.mk-service-ctas .button { flex: 1 1 22rem; }
+
+.mk-booking { max-width: 76rem; margin: 0 auto; padding-top: 6rem; padding-bottom: 8rem; text-align: center; }
+.mk-booking h2 { font-size: clamp(3.2rem, 5vw, 4.6rem); margin: .6rem 0 1.6rem; }
+.mk-booking > p { max-width: 58ch; margin: 0 auto 3rem; line-height: 1.8; }
+.mk-booking .mk-service-ctas { justify-content: center; margin-bottom: 4rem; }
+.mk-booking .mk-facts { text-align: left; }
+.mk-eyebrow { font-size: 1.1rem; letter-spacing: .24em; text-transform: uppercase; color: var(--mk-gold-text); font-weight: 600; margin: 0; }
+
+.mk-offer-ctas { display: grid; gap: 1rem; margin: 2rem auto 0; max-width: 36rem; }
+.mk-offer-note { font-size: 1.2rem; color: var(--mk-muted); margin: .4rem 0 0; }
+
+.mk-article-cta { margin: 5rem 0 2rem; padding: 4rem; background: var(--mk-parchment); text-align: center; }
+.mk-article-cta h3 { margin: 0 0 1rem; font-size: 3rem; }
+.mk-article-cta p { max-width: 52ch; margin: 0 auto 2.4rem; }
+
+/* Review stars: MK gold instead of the theme's yellow */
+.dt-sc-rating div[class*=star-rating]:after { color: var(--mk-ivory); letter-spacing: .2em; }
+
+/* 8. Desktop menu wrapped onto two lines (Morgana issue: 6 items in a ~610px column).
+      Keep it on one line by tightening item spacing; the theme switches to the burger menu on small screens. */
+@media (min-width: 990px) {
+  .dt-desktop-menu.dt-nav { display: flex; flex-wrap: nowrap; white-space: nowrap; }
+  .dt-desktop-menu.dt-nav > li.top-level-link { padding: 0 clamp(8px, 1.05vw, 18px) !important; margin: 0 !important; }
+  .dt-desktop-menu.dt-nav > li.top-level-link:first-child { padding-left: 0 !important; }
+  .dt-desktop-menu.dt-nav > li.top-level-link > a,
+  .dt-desktop-menu.dt-nav > li.top-level-link > details > summary { letter-spacing: .1em; }
+}
+@media (min-width: 990px) and (max-width: 1279px) {
+  .dt-desktop-menu.dt-nav > li.top-level-link > a,
+  .dt-desktop-menu.dt-nav > li.top-level-link > details > summary { font-size: 12px; letter-spacing: .06em; }
+}
