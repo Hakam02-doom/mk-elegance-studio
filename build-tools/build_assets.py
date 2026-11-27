@@ -43,7 +43,7 @@ PHOTO = {
     'AdobeStock_170324431': ('studio-mirror', .5), 'AdobeStock_260941220': ('studio-lounge', .5),
     'AdobeStock_308411579': ('brows-shaped', .4), 'AdobeStock_406167622': ('facial-neck-massage', .4),
     'AdobeStock_468971730': ('sqt-products', .5), 'newsletter-1': ('studio-treatment-room', .5),
-    'AdobeStock_99968874': ('studio-lounge', .5),
+    'AdobeStock_99968874': ('studio-treatment-room', .5),   # welcome popup: photo framed into the left panel
     # about
     'AdobeStock_170324597': ('studio-treatment-room', .45), 'AdobeStock_170324435': ('facial-massage', .4),
     # About 'Inside the Studio' cards: Mital / Client Lounge / Hallway / Treatment Room
@@ -178,6 +178,10 @@ for fname in sorted(os.listdir(A)):
     if k:
         name, fy = PHOTO[k]
         out = contain(mk(name), size) if is_product(name) else cover(mk(name), size, fy)
+        if k == 'AdobeStock_99968874':
+            w_, h_ = size; panel = int(w_ * .44)
+            out = Image.new('RGB', size, IVORY)
+            out.paste(cover(mk(name), (panel, h_), .5), (0, 0))
         if k in BOTTOM_FADE:
             out = bottom_fade(out)
         if k in HERO and size[0] > size[1]:
