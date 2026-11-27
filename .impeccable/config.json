@@ -17,6 +17,24 @@
         ],
         "createdAt": "2026-11-27T11:08:26.160Z",
         "reason": "MK Elegance brand ivory #F8F4EE from mkelegancestudio.ca; user asked to use MK Elegance colours"
+      },
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "site/assets/swiper-bundle.min-4af034.css"
+        ],
+        "createdAt": "2026-11-27T11:33:46.137Z",
+        "reason": "Vendored Swiper library stylesheet (pagination bullets), shipped with the Morgana theme; not authored in this project"
+      },
+      {
+        "rule": "border-accent-on-rounded",
+        "value": "*",
+        "files": [
+          "site/assets/component-cart-drawer-d2f316.css"
+        ],
+        "createdAt": "2026-11-27T11:33:46.158Z",
+        "reason": "Morgana cart-drawer stylesheet; the cart drawer was removed from every page, so this style never renders"
       }
     ]
   }
